@@ -1,0 +1,30 @@
+#let's install Pymatgen which is an open-source Python library
+
+pip install pymatgen
+
+pip install mp_api
+
+from pymatgen.ext.matproj import MPRester
+
+#initialize the MPRester class
+m = MPRester("LI3x49ONOexJwHEFdDw5JuCRWIHnJmgN")
+
+
+#query the structure of the material with task_id "mp-614013"
+For example, let’s imagine we need to get the CIF file of the CsSnI3 perovskite “mp-614013” materials:
+
+structure = m.get_structure_by_material_id("mp-614013")
+
+print(structure)
+
+*******************************************************************************
+#let's transform the structure into a CIF string
+
+
+#convert the structure to a CIF string and save to a CIF file
+cif_data = structure.to(fmt="cif")
+
+with open("mp-614013.cif", "w") as f:
+    f.write(cif_data)
+
+print(cif_data)
